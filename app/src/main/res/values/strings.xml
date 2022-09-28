@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">TodoListChallenge</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="title_input_hint">Input the name of to-do</string>
+    <string name="title_input_description">Input the description of to-do</string>
+    <string name="checkbox_title">Done</string>
+    <string name="button_addtodo_title">add</string>
+    <string name="todo_tv_title">To-do</string>
+    <string name="todo_inserted_successfully">Todo was successfully inserted</string>
+    <string name="todo_error_to_insert">There was an error when inserting todo</string>
+</resources>
