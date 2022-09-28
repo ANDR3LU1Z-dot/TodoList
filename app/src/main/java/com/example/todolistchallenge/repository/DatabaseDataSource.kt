@@ -8,7 +8,7 @@ class DatabaseDataSource(private val todoDAO: TodoDao) : TodoRepository {
     override suspend fun insertTodo(
         title: String,
         description: String,
-        createdDate: Int,
+        createdDate: String,
         done: Int
     ): Long {
         val todo = TodoEntity(
@@ -25,7 +25,7 @@ class DatabaseDataSource(private val todoDAO: TodoDao) : TodoRepository {
         id: Long,
         title: String,
         description: String,
-        createdDate: Int,
+        createdDate: String,
         done: Int
     ) {
         val todo = TodoEntity(

@@ -1,11 +1,12 @@
 package com.example.todolistchallenge.ui.view
 
+import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.CalendarView
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -19,6 +20,9 @@ import com.example.todolistchallenge.repository.TodoRepository
 import com.example.todolistchallenge.ui.extension.hideKeyboard
 import com.example.todolistchallenge.ui.viewmodels.TodoViewModel
 import com.google.android.material.snackbar.Snackbar
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
+import java.util.*
 
 
 class TodoEditFragment : Fragment() {
@@ -92,8 +96,6 @@ class TodoEditFragment : Fragment() {
 
     private fun setListeners() {
 
-
-
         bindingTodoEditFragment.button.setOnClickListener {
             val title = bindingTodoEditFragment.inputTitle.text.toString()
             val desc = bindingTodoEditFragment.inputDesc.text.toString()
@@ -104,10 +106,20 @@ class TodoEditFragment : Fragment() {
             if(title.isEmpty()){
                 Toast.makeText(requireContext(), "Preencha o campo Title", Toast.LENGTH_SHORT).show()
             } else{
-                viewModel.addTodo(title,desc, 1,done)
+                viewModel.addTodo(title,desc, getCurrentData(),done)
             }
 
         }
+    }
+
+    private fun getCurrentData(): String {
+
+        val locale = Locale("pt", "BR")
+
+        val localDate = LocalDate.now()
+
+        return DateTimeFormatter.ofPattern("dd/MM/yyyy").format(localDate)
+
     }
 
 

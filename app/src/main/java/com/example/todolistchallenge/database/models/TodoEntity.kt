@@ -10,6 +10,6 @@ data class TodoEntity(
     val id: Long = 0,
     val title: String,
     val description: String?,
-    val createdDate: Int,
+    val createdDate: String,
     val done: Int
 )

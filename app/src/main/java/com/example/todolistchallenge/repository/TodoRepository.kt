@@ -5,9 +5,9 @@ import com.example.todolistchallenge.database.models.TodoEntity
 
 interface TodoRepository {
 
-    suspend fun insertTodo(title: String, description: String, createdDate: Int, done: Int): Long
+    suspend fun insertTodo(title: String, description: String, createdDate: String, done: Int): Long
 
-    suspend fun updateTodo(id: Long, title: String, description: String, createdDate: Int, done: Int)
+    suspend fun updateTodo(id: Long, title: String, description: String, createdDate: String, done: Int)
 
     suspend fun deleteTodo(id: Long)
 

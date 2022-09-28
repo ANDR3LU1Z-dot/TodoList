@@ -21,7 +21,7 @@ class TodoViewModel(private val repository: TodoRepository) : ViewModel() {
     val messageLiveData: LiveData<Int>
         get() = _messageMTLiveData
 
-    fun addTodo(title: String, description: String, createdDate: Int, done: Int) =
+    fun addTodo(title: String, description: String, createdDate: String, done: Int) =
         viewModelScope.launch {
             try {
                 val id = repository.insertTodo(title, description, createdDate, done)
