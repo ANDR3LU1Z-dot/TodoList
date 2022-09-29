@@ -17,6 +17,7 @@ import com.example.todolistchallenge.databinding.FragmentTodoListBinding
 import com.example.todolistchallenge.repository.DatabaseDataSource
 import com.example.todolistchallenge.repository.TodoRepository
 import com.example.todolistchallenge.ui.adapters.TodoListAdapter
+import com.example.todolistchallenge.ui.extension.navigateWithAnimations
 import com.example.todolistchallenge.ui.viewmodels.TodoListViewModel
 import com.example.todolistchallenge.ui.viewmodels.TodoViewModel
 
@@ -76,7 +77,7 @@ class TodoListFragment : Fragment() {
 
     private fun configureViewListeners(){
         binding.fabAddTodo.setOnClickListener {
-            findNavController().navigate(R.id.todoEditFragment)
+            findNavController().navigateWithAnimations(R.id.todoEditFragment)
         }
     }
 

@@ -22,4 +22,6 @@ interface TodoDao {
 
     @Query("SELECT * FROM todo_table")
     fun readAllTodos(): LiveData<List<TodoEntity>>
+
+
 }

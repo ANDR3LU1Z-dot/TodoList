@@ -8,11 +8,11 @@
     <fragment
         android:id="@+id/todoEditFragment"
         android:name="com.example.todolistchallenge.ui.view.TodoEditFragment"
-        android:label="fragment_todo_edit"
+        android:label="@string/todo_list_name"
         tools:layout="@layout/fragment_todo_edit" />
     <fragment
         android:id="@+id/todoListFragment"
         android:name="com.example.todolistchallenge.ui.view.TodoListFragment"
-        android:label="fragment_todo_list"
+        android:label="@string/todo_list_name"
         tools:layout="@layout/fragment_todo_list" />
 </navigation>
