@@ -46,7 +46,7 @@ class DatabaseDataSource(private val todoDAO: TodoDao) : TodoRepository {
         todoDAO.deleteAll()
     }
 
-    override suspend fun getAllTodos(): LiveData<List<TodoEntity>> {
+    override fun getAllTodos(): LiveData<List<TodoEntity>> {
         return todoDAO.readAllTodos()
     }
 }

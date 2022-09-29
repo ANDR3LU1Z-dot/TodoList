@@ -13,6 +13,6 @@ interface TodoRepository {
 
     suspend fun deleteAllTodos()
 
-    suspend fun getAllTodos(): LiveData<List<TodoEntity>>
+    fun getAllTodos(): LiveData<List<TodoEntity>>
 
 }
