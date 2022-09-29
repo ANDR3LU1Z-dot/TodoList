@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.todolistchallenge.R
 import com.example.todolistchallenge.database.AppDataBase
 import com.example.todolistchallenge.database.daos.TodoDao
@@ -48,6 +49,7 @@ class TodoListFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         observeViewModelEvents()
+        configureViewListeners()
 
 //        val todoListAdapter = TodoListAdapter(
 //            listOf(
@@ -70,6 +72,12 @@ class TodoListFragment : Fragment() {
             }
         }
 
+    }
+
+    private fun configureViewListeners(){
+        binding.fabAddTodo.setOnClickListener {
+            findNavController().navigate(R.id.todoEditFragment)
+        }
     }
 
 
