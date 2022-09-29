@@ -3,11 +3,16 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    app:startDestination="@id/todoEditFragment">
+    app:startDestination="@id/todoListFragment">
 
     <fragment
         android:id="@+id/todoEditFragment"
         android:name="com.example.todolistchallenge.ui.view.TodoEditFragment"
         android:label="fragment_todo_edit"
         tools:layout="@layout/fragment_todo_edit" />
+    <fragment
+        android:id="@+id/todoListFragment"
+        android:name="com.example.todolistchallenge.ui.view.TodoListFragment"
+        android:label="fragment_todo_list"
+        tools:layout="@layout/fragment_todo_list" />
 </navigation>

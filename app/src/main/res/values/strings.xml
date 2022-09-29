@@ -9,4 +9,5 @@
     <string name="todo_tv_title">To-do</string>
     <string name="todo_inserted_successfully">Todo was successfully inserted</string>
     <string name="todo_error_to_insert">There was an error when inserting todo</string>
+    <string name="tv_status_item_label">Status:</string>
 </resources>
