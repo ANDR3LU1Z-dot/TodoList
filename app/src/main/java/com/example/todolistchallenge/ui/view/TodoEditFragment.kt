@@ -12,6 +12,7 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
+import androidx.navigation.fragment.findNavController
 import com.example.todolistchallenge.database.AppDataBase
 import com.example.todolistchallenge.database.daos.TodoDao
 import com.example.todolistchallenge.databinding.FragmentTodoEditBinding
@@ -69,6 +70,9 @@ class TodoEditFragment : Fragment() {
                 is TodoViewModel.TodoState.Inserted -> {
                     clearFields()
                     hideKeyboard()
+                    requireView().requestFocus()
+
+                    findNavController().popBackStack()
                 }
             }
 

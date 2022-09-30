@@ -75,6 +75,11 @@ class TodoListFragment : Fragment() {
 
     }
 
+    override fun onResume() {
+        super.onResume()
+        viewModel.getTodos()
+    }
+
     private fun configureViewListeners(){
         binding.fabAddTodo.setOnClickListener {
             findNavController().navigateWithAnimations(R.id.todoEditFragment)
