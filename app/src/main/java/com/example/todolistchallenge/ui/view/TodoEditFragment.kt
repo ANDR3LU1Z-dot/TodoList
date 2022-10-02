@@ -37,6 +37,7 @@ class TodoEditFragment : Fragment() {
     private lateinit var inputTitle: EditText
     private lateinit var inputDesc: EditText
     private lateinit var buttonSave: Button
+    private lateinit var buttonDelete: Button
     private lateinit var checkBox: CheckBox
 
     private val viewModel: TodoViewModel by viewModels {
@@ -62,7 +63,8 @@ class TodoEditFragment : Fragment() {
 
         inputTitle = bindingTodoEditFragment.inputTitle
         inputDesc = bindingTodoEditFragment.inputDesc
-        buttonSave = bindingTodoEditFragment.button
+        buttonSave = bindingTodoEditFragment.buttonAdd
+        buttonDelete = bindingTodoEditFragment.buttonDelete
         checkBox = bindingTodoEditFragment.checkBox
 
         // Inflate the layout for this fragment
@@ -85,6 +87,7 @@ class TodoEditFragment : Fragment() {
                 1 -> checkBox.isChecked = true
                 else -> checkBox.isChecked = false
             }
+            buttonDelete.visibility = View.VISIBLE
         }
         observeEvents()
         setListeners()
@@ -94,17 +97,13 @@ class TodoEditFragment : Fragment() {
     private fun observeEvents() {
         viewModel.todoLiveData.observe(viewLifecycleOwner) { todoState ->
             when (todoState) {
-                is TodoViewModel.TodoState.Inserted -> {
+                is TodoViewModel.TodoState.Inserted,
+                is TodoViewModel.TodoState.Updated,
+                is TodoViewModel.TodoState.Deleted -> {
                     clearFields()
                     hideKeyboard()
                     requireView().requestFocus()
 
-                    findNavController().popBackStack()
-                }
-
-                is TodoViewModel.TodoState.Updated -> {
-                    clearFields()
-                    hideKeyboard()
                     findNavController().popBackStack()
                 }
             }
@@ -132,7 +131,7 @@ class TodoEditFragment : Fragment() {
 
     private fun setListeners() {
 
-        bindingTodoEditFragment.button.setOnClickListener {
+        bindingTodoEditFragment.buttonAdd.setOnClickListener {
             val title = bindingTodoEditFragment.inputTitle.text.toString()
             val desc = bindingTodoEditFragment.inputDesc.text.toString()
             val done: Int = when (bindingTodoEditFragment.checkBox.isChecked) {
@@ -152,6 +151,10 @@ class TodoEditFragment : Fragment() {
                 )
             }
 
+        }
+
+        buttonDelete.setOnClickListener {
+            viewModel.removeTodo(args.todo?.id ?: 0)
         }
     }
 

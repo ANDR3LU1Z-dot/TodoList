@@ -61,9 +61,23 @@ class TodoViewModel(private val repository: TodoRepository) : ViewModel() {
             }
         }
 
+    fun removeTodo(id: Long) = viewModelScope.launch {
+        try{
+            if (id > 0){
+                repository.deleteTodo(id)
+                _todoMTLiveData.value = TodoState.Deleted
+                _messageMTLiveData.value = R.string.todo_deleted_sucessfully
+            }
+        } catch (ex: Exception){
+            _messageMTLiveData.value = R.string.todo_error_to_delete
+            Log.e(TAG, ex.toString())
+        }
+    }
+
     sealed class TodoState {
         object Inserted : TodoState()
         object Updated : TodoState()
+        object Deleted: TodoState()
     }
 
     companion object {
