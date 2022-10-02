@@ -15,6 +15,16 @@
     tools:listitem="@layout/todo_item"
     />
 
+    <TextView
+        android:id="@+id/empty_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="50sp"
+        android:gravity="center"
+        android:text="@string/empty_list_message"
+        android:visibility="gone"
+        />
+
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/fabAddTodo"
         android:layout_width="wrap_content"

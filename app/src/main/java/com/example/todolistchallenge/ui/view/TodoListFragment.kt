@@ -5,10 +5,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.core.view.isEmpty
+import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistchallenge.R
 import com.example.todolistchallenge.database.AppDataBase
 import com.example.todolistchallenge.database.daos.TodoDao
@@ -25,6 +30,8 @@ import com.example.todolistchallenge.ui.viewmodels.TodoViewModel
 
 class TodoListFragment : Fragment() {
     private lateinit var binding: FragmentTodoListBinding
+    private lateinit var recyclerView: RecyclerView
+    private lateinit var emptyView: TextView
 
     private val viewModel: TodoListViewModel by viewModels {
         object : ViewModelProvider.Factory{
@@ -44,6 +51,11 @@ class TodoListFragment : Fragment() {
     ): View? {
         this.binding = FragmentTodoListBinding.inflate(layoutInflater, container, false)
         // Inflate the layout for this fragment
+        recyclerView = binding.recyclerView
+        emptyView = binding.emptyView
+
+
+
         return this.binding.root
     }
 
@@ -52,6 +64,14 @@ class TodoListFragment : Fragment() {
 
         observeViewModelEvents()
         configureViewListeners()
+
+//        if(recyclerView.isEmpty()){
+//            recyclerView.isGone
+//            emptyView.isVisible
+//        } else {
+//            recyclerView.isVisible
+//            emptyView.isGone
+//        }
 
 //        val todoListAdapter = TodoListAdapter(
 //            listOf(
