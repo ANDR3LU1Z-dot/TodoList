@@ -1,18 +1,21 @@
 package com.example.todolistchallenge.ui.view
 
-import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
+import android.widget.CheckBox
+import android.widget.EditText
 import android.widget.Toast
-import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.fragment.navArgs
+import com.example.todolistchallenge.R
 import com.example.todolistchallenge.database.AppDataBase
 import com.example.todolistchallenge.database.daos.TodoDao
 import com.example.todolistchallenge.databinding.FragmentTodoEditBinding
@@ -31,9 +34,13 @@ class TodoEditFragment : Fragment() {
 //    private lateinit var calendarView:CalendarView
 
     private lateinit var bindingTodoEditFragment: FragmentTodoEditBinding
+    private lateinit var inputTitle: EditText
+    private lateinit var inputDesc: EditText
+    private lateinit var buttonSave: Button
+    private lateinit var checkBox: CheckBox
 
-    private val viewModel:TodoViewModel by viewModels {
-        object : ViewModelProvider.Factory{
+    private val viewModel: TodoViewModel by viewModels {
+        object : ViewModelProvider.Factory {
             override fun <T : ViewModel> create(modelClass: Class<T>): T {
                 val todoDAO: TodoDao =
                     AppDataBase.getInstance(requireContext()).todoDAO
@@ -44,29 +51,49 @@ class TodoEditFragment : Fragment() {
         }
     }
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
 
+
         bindingTodoEditFragment = FragmentTodoEditBinding.inflate(inflater, container, false)
+
+        inputTitle = bindingTodoEditFragment.inputTitle
+        inputDesc = bindingTodoEditFragment.inputDesc
+        buttonSave = bindingTodoEditFragment.button
+        checkBox = bindingTodoEditFragment.checkBox
 
         // Inflate the layout for this fragment
         return bindingTodoEditFragment.root
+
     }
+
+    private val args: TodoEditFragmentArgs by navArgs()
+
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+
+        args.todo?.let { todo ->
+            buttonSave.text = getString(R.string.todo_button_update)
+            inputTitle.setText(todo.title)
+            inputDesc.setText(todo.description)
+            when (todo.done) {
+                1 -> checkBox.isChecked = true
+                else -> checkBox.isChecked = false
+            }
+        }
         observeEvents()
         setListeners()
     }
 
 
-
     private fun observeEvents() {
-        viewModel.todoLiveData.observe(viewLifecycleOwner){todoState ->
-            when(todoState){
+        viewModel.todoLiveData.observe(viewLifecycleOwner) { todoState ->
+            when (todoState) {
                 is TodoViewModel.TodoState.Inserted -> {
                     clearFields()
                     hideKeyboard()
@@ -74,15 +101,20 @@ class TodoEditFragment : Fragment() {
 
                     findNavController().popBackStack()
                 }
+
+                is TodoViewModel.TodoState.Updated -> {
+                    clearFields()
+                    hideKeyboard()
+                    findNavController().popBackStack()
+                }
             }
 
         }
 
-        viewModel.messageLiveData.observe(viewLifecycleOwner){stringResId ->
+        viewModel.messageLiveData.observe(viewLifecycleOwner) { stringResId ->
             Snackbar.make(requireView(), stringResId, Snackbar.LENGTH_LONG).show()
         }
     }
-
 
 
     private fun clearFields() {
@@ -93,7 +125,7 @@ class TodoEditFragment : Fragment() {
 
     private fun hideKeyboard() {
         val parentActivity = requireActivity()
-        if(parentActivity is AppCompatActivity){
+        if (parentActivity is AppCompatActivity) {
             parentActivity.hideKeyboard()
         }
     }
@@ -103,14 +135,21 @@ class TodoEditFragment : Fragment() {
         bindingTodoEditFragment.button.setOnClickListener {
             val title = bindingTodoEditFragment.inputTitle.text.toString()
             val desc = bindingTodoEditFragment.inputDesc.text.toString()
-            val done: Int = when (bindingTodoEditFragment.checkBox.isChecked){
+            val done: Int = when (bindingTodoEditFragment.checkBox.isChecked) {
                 true -> 1
                 else -> 0
             }
-            if(title.isEmpty()){
-                Toast.makeText(requireContext(), "Preencha o campo Title", Toast.LENGTH_SHORT).show()
-            } else{
-                viewModel.addTodo(title,desc, getCurrentData(),done)
+            if (title.isEmpty()) {
+                Toast.makeText(requireContext(), "Preencha o campo Title", Toast.LENGTH_SHORT)
+                    .show()
+            } else {
+                viewModel.insertOrUpdateTodo(
+                    title,
+                    desc,
+                    getCurrentData(),
+                    done,
+                    args.todo?.id ?: 0
+                )
             }
 
         }

@@ -11,8 +11,15 @@ import com.example.todolistchallenge.R
 import com.example.todolistchallenge.database.models.TodoEntity
 import com.example.todolistchallenge.databinding.TodoItemBinding
 
+interface TodoItemListener{
+    fun onItemSelected(position: Int): Boolean
+}
+
 class TodoListAdapter(private val todo: List<TodoEntity>) :
     RecyclerView.Adapter<TodoListAdapter.TodoListViewHolder>() {
+
+
+    var onItemClick: ((entity: TodoEntity) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoListViewHolder {
         return TodoListViewHolder(
@@ -39,6 +46,7 @@ class TodoListAdapter(private val todo: List<TodoEntity>) :
         private val imgCard: ImageView = binding.colorCardTodoItem
 
 
+        @SuppressLint("UseCompatLoadingForDrawables")
         fun bindView(todo: TodoEntity) {
             tvTodoTitle.text = todo.title
             tvStatusTodo.text = when (todo.done) {
@@ -50,6 +58,12 @@ class TodoListAdapter(private val todo: List<TodoEntity>) :
                 1 -> imgCard.background = itemView.resources.getDrawable(R.drawable.shape_done_card)
                 else -> imgCard.background = itemView.resources.getDrawable(R.drawable.shape_todo_card)
             }
+
+            itemView.setOnLongClickListener{
+                 onItemClick?.invoke(todo)
+                true
+            }
+
         }
     }
 }

@@ -6,8 +6,10 @@
     <string name="title_input_description">Input the description of to-do</string>
     <string name="checkbox_title">Done</string>
     <string name="button_addtodo_title">add</string>
+    <string name="todo_button_update">Update</string>
     <string name="todo_tv_title">To-do</string>
     <string name="todo_inserted_successfully">Todo was successfully inserted</string>
+    <string name="todo_updated_successfully">Todo was successfully updated</string>
     <string name="todo_error_to_insert">There was an error when inserting todo</string>
     <string name="tv_status_item_label">Status:</string>
 

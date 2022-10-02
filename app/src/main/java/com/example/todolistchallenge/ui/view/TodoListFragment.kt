@@ -16,6 +16,7 @@ import com.example.todolistchallenge.database.models.TodoEntity
 import com.example.todolistchallenge.databinding.FragmentTodoListBinding
 import com.example.todolistchallenge.repository.DatabaseDataSource
 import com.example.todolistchallenge.repository.TodoRepository
+import com.example.todolistchallenge.ui.adapters.TodoItemListener
 import com.example.todolistchallenge.ui.adapters.TodoListAdapter
 import com.example.todolistchallenge.ui.extension.navigateWithAnimations
 import com.example.todolistchallenge.ui.viewmodels.TodoListViewModel
@@ -65,7 +66,13 @@ class TodoListFragment : Fragment() {
     private fun observeViewModelEvents() {
         viewModel.allTodosEvent.observe(viewLifecycleOwner) { allTodos ->
 
-            val todoListAdapter = TodoListAdapter(allTodos)
+            val todoListAdapter = TodoListAdapter(allTodos).apply {
+                    onItemClick = { todo ->
+                        val directions = TodoListFragmentDirections
+                            .actionTodoListFragmentToTodoEditFragment(todo)
+                        findNavController().navigateWithAnimations(directions)
+                    }
+            }
 
             binding.recyclerView.run {
                 setHasFixedSize(true)
@@ -82,7 +89,7 @@ class TodoListFragment : Fragment() {
 
     private fun configureViewListeners(){
         binding.fabAddTodo.setOnClickListener {
-            findNavController().navigateWithAnimations(R.id.todoEditFragment)
+            findNavController().navigateWithAnimations(R.id.action_todoListFragment_to_todoEditFragment)
         }
     }
 

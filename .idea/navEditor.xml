@@ -13,8 +13,8 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="160" />
-                            <option name="y" value="47" />
+                            <option name="x" value="256" />
+                            <option name="y" value="12" />
                           </Point>
                         </option>
                       </LayoutPositions>
@@ -25,9 +25,18 @@
                       <LayoutPositions>
                         <option name="myPosition">
                           <Point>
-                            <option name="x" value="-23" />
-                            <option name="y" value="45" />
+                            <option name="x" value="12" />
+                            <option name="y" value="12" />
                           </Point>
+                        </option>
+                        <option name="myPositions">
+                          <map>
+                            <entry key="action_todoListFragment_to_todoEditFragment">
+                              <value>
+                                <LayoutPositions />
+                              </value>
+                            </entry>
+                          </map>
                         </option>
                       </LayoutPositions>
                     </value>
