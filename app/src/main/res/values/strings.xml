@@ -1,8 +1,6 @@
 <resources>
     <string name="app_name">TodoListChallenge</string>
     <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_input_hint">Type the name of your to-do</string>
     <string name="title_input_description">Type the description of your to-do</string>
     <string name="title_toast_error_message"> Please, type the name of your to-do</string>
     <string name="checkbox_title">Done</string>
@@ -12,7 +10,7 @@
     <string name="todo_tv_title">To-do</string>
     <string name="todo_inserted_successfully">Todo was successfully inserted</string>
     <string name="todo_updated_successfully">Todo was successfully updated</string>
-    <string name="todo_deleted_sucessfully">delete</string>
+    <string name="todo_deleted_sucessfully">Todo was successfully deleted</string>
     <string name="todo_error_to_insert">There was an error when inserting todo</string>
     <string name="todo_error_to_update">There was an error when updating todo</string>
     <string name="todo_error_to_delete">There was an error when deleting todo</string>
@@ -21,4 +19,5 @@
     <string name="todo_list_name">Todo List</string>
     <string name="empty_list_message">Oops! Nothing Here :(</string>
     <string name="loading_title">Loading...</string>
+    <string name="title_input_hint">Type the name of your to-do</string>
 </resources>

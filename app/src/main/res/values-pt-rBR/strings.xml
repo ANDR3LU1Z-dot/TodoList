@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Desafio da lista de tarefas</string>
+    <string name="checkbox_title">Feito</string>
+    <string name="title_input_hint">Digite o nome da sua tarefa</string>
+    <string name="button_addtodo_title">adicionar</string>
+    <string name="button_deletetodo_title">excluir</string>
+    <string name="todo_button_update">Atualizar</string>
+    <string name="todo_tv_title">Tarefa</string>
+    <string name="todo_inserted_successfully">A tarefa foi inserido(a) com sucesso</string>
+    <string name="todo_updated_successfully">A tarefa foi atualizada com sucesso</string>
+    <string name="todo_deleted_sucessfully">A tarefa foi excluida com sucesso</string>
+    <string name="todo_error_to_insert">Ocorreu um erro ao inserir a tarefa</string>
+    <string name="todo_error_to_update">" Ocorreu um erro ao atualizar a tarefa"</string>
+    <string name="todo_error_to_delete">" Ocorreu um erro ao deletar a tarefa"</string>
+    <string name="tv_status_item_label">Status:</string>
+    <string name="todo_list_name">Lista de tarefas</string>
+    <string name="loading_title">Carregando...</string>
+    <string name="empty_list_message">Oops! Não a nada aqui :(</string>
+    <string name="title_input_description">Digite a descrição da sua tarefa</string>
+    <string name="title_toast_error_message">" Por favor, digite o nome da sua tarefa"</string>
+</resources>
