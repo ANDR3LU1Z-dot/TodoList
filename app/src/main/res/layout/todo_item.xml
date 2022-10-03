@@ -10,7 +10,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     app:cardCornerRadius="10dp">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -19,50 +19,45 @@
         android:layout_marginEnd="16dp"
 
         >
+
+        <CheckBox
+            android:id="@+id/checkBoxList"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginTop="20dp"
+            android:checked="false"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
         <TextView
             android:id="@+id/title"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:layout_width="match_parent"
-            android:textStyle="bold"
-            android:textSize="18sp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:gravity="center_vertical"
+            android:layout_marginStart="5dp"
+            android:paddingStart="5dp"
+            android:paddingEnd="10dp"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="@+id/checkBoxList"
+            app:layout_constraintStart_toEndOf="@id/checkBoxList"
+            app:layout_constraintTop_toTopOf="@+id/checkBoxList"
             tools:text="Title" />
 
-        <TextView
-            android:id="@+id/status_label"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:layout_width="wrap_content"
-            android:textSize="15sp"
-            android:layout_below="@id/title"
-            android:layout_height="wrap_content"
-            android:text="@string/tv_status_item_label" />
-
-        <TextView
-            android:id="@+id/status_todo"
-            android:paddingStart="10dp"
-            android:paddingEnd="10dp"
-            android:layout_width="wrap_content"
-            android:layout_marginStart="50dp"
-            android:textSize="15sp"
-            android:layout_below="@id/title"
-            android:layout_height="wrap_content"
-            tools:text="To do " />
 
         <TextView
             android:id="@+id/date"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/title"
+            android:layout_marginTop="8dp"
             android:paddingStart="10dp"
             android:paddingEnd="10dp"
             android:textSize="11sp"
-            android:layout_marginTop="5dp"
-            android:layout_below="@id/status_label"
-            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/title"
             tools:text="00/00/0000" />
 
-    </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <ImageView
         android:id="@+id/colorCard_todo_item"
