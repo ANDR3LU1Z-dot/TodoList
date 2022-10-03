@@ -14,6 +14,9 @@ interface TodoDao {
     @Update
     suspend fun update(toDo: TodoEntity)
 
+    @Query("UPDATE todo_table SET done = 1 WHERE id = :id")
+    suspend fun updateDone(id: Long)
+
     @Query("DELETE FROM todo_table WHERE id = :id")
     suspend fun delete(id: Long)
 

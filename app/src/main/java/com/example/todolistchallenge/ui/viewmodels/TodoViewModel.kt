@@ -42,7 +42,7 @@ class TodoViewModel(private val repository: TodoRepository) : ViewModel() {
                 _todoMTLiveData.value = TodoState.Updated
                 _messageMTLiveData.value = R.string.todo_updated_successfully
             } catch (ex: Exception){
-                _messageMTLiveData.value = R.string.todo_error_to_insert
+                _messageMTLiveData.value = R.string.todo_error_to_update
                 Log.e(TAG, ex.toString())
             }
         }

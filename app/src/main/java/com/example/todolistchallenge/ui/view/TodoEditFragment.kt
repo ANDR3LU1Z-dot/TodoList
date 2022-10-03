@@ -139,8 +139,7 @@ class TodoEditFragment : Fragment() {
                 else -> 0
             }
             if (title.isEmpty()) {
-                Toast.makeText(requireContext(), "Preencha o campo Title", Toast.LENGTH_SHORT)
-                    .show()
+                Toast.makeText(requireActivity(), "Preencha o campo Title", Toast.LENGTH_SHORT).show()
             } else {
                 viewModel.insertOrUpdateTodo(
                     title,

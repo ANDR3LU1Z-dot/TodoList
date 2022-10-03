@@ -13,6 +13,7 @@
     <string name="todo_updated_successfully">Todo was successfully updated</string>
     <string name="todo_deleted_sucessfully">delete</string>
     <string name="todo_error_to_insert">There was an error when inserting todo</string>
+    <string name="todo_error_to_update">There was an error when updating todo</string>
     <string name="todo_error_to_delete">There was an error when deleting todo</string>
     <string name="tv_status_item_label">Status:</string>
 

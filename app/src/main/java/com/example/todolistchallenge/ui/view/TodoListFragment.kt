@@ -6,9 +6,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
-import androidx.core.view.isEmpty
-import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
@@ -17,15 +14,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.todolistchallenge.R
 import com.example.todolistchallenge.database.AppDataBase
 import com.example.todolistchallenge.database.daos.TodoDao
-import com.example.todolistchallenge.database.models.TodoEntity
 import com.example.todolistchallenge.databinding.FragmentTodoListBinding
 import com.example.todolistchallenge.repository.DatabaseDataSource
 import com.example.todolistchallenge.repository.TodoRepository
-import com.example.todolistchallenge.ui.adapters.TodoItemListener
 import com.example.todolistchallenge.ui.adapters.TodoListAdapter
 import com.example.todolistchallenge.ui.extension.navigateWithAnimations
 import com.example.todolistchallenge.ui.viewmodels.TodoListViewModel
-import com.example.todolistchallenge.ui.viewmodels.TodoViewModel
 
 
 class TodoListFragment : Fragment() {
@@ -87,10 +81,13 @@ class TodoListFragment : Fragment() {
         viewModel.allTodosEvent.observe(viewLifecycleOwner) { allTodos ->
 
             val todoListAdapter = TodoListAdapter(allTodos).apply {
-                    onItemClick = { todo ->
+                    onLongItemClick = { todo ->
                         val directions = TodoListFragmentDirections
                             .actionTodoListFragmentToTodoEditFragment(todo)
                         findNavController().navigateWithAnimations(directions)
+                    }
+                    onItemClick = { todo ->
+                        viewModel.updateDone(todo.id)
                     }
             }
 
@@ -99,6 +96,7 @@ class TodoListFragment : Fragment() {
                 adapter = todoListAdapter
             }
         }
+
 
     }
 

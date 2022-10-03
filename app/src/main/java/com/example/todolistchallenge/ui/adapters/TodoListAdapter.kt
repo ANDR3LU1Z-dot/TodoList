@@ -19,6 +19,8 @@ class TodoListAdapter(private val todo: List<TodoEntity>) :
     RecyclerView.Adapter<TodoListAdapter.TodoListViewHolder>() {
 
 
+    var onLongItemClick: ((entity: TodoEntity) -> Unit)? = null
+
     var onItemClick: ((entity: TodoEntity) -> Unit)? = null
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): TodoListViewHolder {
@@ -49,10 +51,8 @@ class TodoListAdapter(private val todo: List<TodoEntity>) :
         @SuppressLint("UseCompatLoadingForDrawables")
         fun bindView(todo: TodoEntity) {
             tvTodoTitle.text = todo.title
-            tvStatusTodo.text = when (todo.done) {
-                1 -> "Done"
-                else -> "To do"
-            }
+            changeTextDone(tvStatusTodo, todo.done)
+
             tvDate.text = todo.createdDate
             when (todo.done) {
                 1 -> imgCard.background = itemView.resources.getDrawable(R.drawable.shape_done_card)
@@ -60,10 +60,27 @@ class TodoListAdapter(private val todo: List<TodoEntity>) :
             }
 
             itemView.setOnLongClickListener{
-                 onItemClick?.invoke(todo)
+                 onLongItemClick?.invoke(todo)
                 true
             }
 
+            itemView.setOnClickListener{
+                onItemClick?.invoke(todo)
+                imgCard.background = itemView.resources.getDrawable(R.drawable.shape_done_card)
+                changeTextDone(tvStatusTodo, todo.done)
+//                tvStatusTodo.text = when (todo.done) {
+//                    1 -> "Done"
+//                    else -> "To do"
+//                }
+            }
+
+        }
+
+        private fun changeTextDone(textView: TextView, done: Int){
+            textView.text = when (done) {
+                1 -> "Done"
+                else -> "To do"
+            }
         }
     }
 }

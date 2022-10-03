@@ -9,6 +9,8 @@ interface TodoRepository {
 
     suspend fun updateTodo(id: Long, title: String, description: String, createdDate: String, done: Int)
 
+    suspend fun updateDone(id: Long)
+
     suspend fun deleteTodo(id: Long)
 
     suspend fun deleteAllTodos()

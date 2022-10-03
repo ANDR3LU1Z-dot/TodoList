@@ -38,6 +38,11 @@ class DatabaseDataSource(private val todoDAO: TodoDao) : TodoRepository {
         todoDAO.update(todo)
     }
 
+    override suspend fun updateDone(id: Long) {
+
+        todoDAO.updateDone(id)
+    }
+
     override suspend fun deleteTodo(id: Long) {
         todoDAO.delete(id)
     }
