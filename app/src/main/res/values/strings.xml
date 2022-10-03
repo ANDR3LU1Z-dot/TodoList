@@ -2,8 +2,9 @@
     <string name="app_name">TodoListChallenge</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="title_input_hint">Input the name of to-do</string>
-    <string name="title_input_description">Input the description of to-do</string>
+    <string name="title_input_hint">Type the name of your to-do</string>
+    <string name="title_input_description">Type the description of your to-do</string>
+    <string name="title_toast_error_message"> Please, type the name of your to-do</string>
     <string name="checkbox_title">Done</string>
     <string name="button_addtodo_title">add</string>
     <string name="button_deletetodo_title">Delete</string>

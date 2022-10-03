@@ -39,6 +39,7 @@ class TodoEditFragment : Fragment() {
     private lateinit var buttonSave: Button
     private lateinit var buttonDelete: Button
     private lateinit var checkBox: CheckBox
+    private val message: String = "Please, type the name of your to-do"
 
     private val viewModel: TodoViewModel by viewModels {
         object : ViewModelProvider.Factory {
@@ -139,7 +140,11 @@ class TodoEditFragment : Fragment() {
                 else -> 0
             }
             if (title.isEmpty()) {
-                Toast.makeText(requireActivity(), "Preencha o campo Title", Toast.LENGTH_SHORT).show()
+                Toast.makeText(
+                    requireActivity(),
+                    "$message",
+                    Toast.LENGTH_SHORT
+                ).show()
             } else {
                 viewModel.insertOrUpdateTodo(
                     title,
